@@ -24,7 +24,7 @@ use OpenFrame::WebApp::Error::LoadClass;
 
 use base qw ( OpenFrame::Object );
 
-our $VERSION = (split(/ /, '$Revision: 1.4 $'))[1];
+our $VERSION = (split(/ /, '$Revision: 1.5 $'))[1];
 
 sub type {
     my $self = shift;
@@ -52,7 +52,7 @@ sub load_types_class {
     my $self  = shift;
     my $class = $self->get_types_class;
     unless ( $class->can( 'new' ) ) {
-	eval "use $class;";
+	eval "require $class;";
 	throw OpenFrame::WebApp::Error::LoadClass( -text => $@ ) if ($@);
     }
     return $class;

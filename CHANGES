@@ -2,6 +2,9 @@
  OpenFrame-WebApp Change Log
 =============================
 
+v0.04
+    +	bugfixes
+
 v0.03
     +	wrote User::Session & User::SessionLoader
     +	factories now try to load classes before trying to create new objects

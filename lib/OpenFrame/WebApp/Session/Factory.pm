@@ -23,7 +23,7 @@ use warnings::register;
 
 use OpenFrame::WebApp::Session;
 
-our $VERSION = (split(/ /, '$Revision: 1.3 $'))[1];
+our $VERSION = (split(/ /, '$Revision: 1.4 $'))[1];
 
 use base qw ( OpenFrame::WebApp::Factory );
 
@@ -52,7 +52,7 @@ sub new_session {
 sub fetch_session {
     my $self = shift;
     my $id   = shift;
-    $self->get_types_class->fetch( $id );
+    $self->load_types_class->fetch( $id );
 }
 
 
