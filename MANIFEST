@@ -1,5 +1,5 @@
-MANIFEST			This list of files
 CHANGES
+MANIFEST			This list of files
 Makefile.PL
 README
 TODO
@@ -17,9 +17,11 @@ examples/simple.pl
 lib/OpenFrame/WebApp.pm
 lib/OpenFrame/WebApp/Error.pm
 lib/OpenFrame/WebApp/Error/Abstract.pm
+lib/OpenFrame/WebApp/Error/LoadClass.pm
 lib/OpenFrame/WebApp/Factory.pm
 lib/OpenFrame/WebApp/Segment/Decline.pm
 lib/OpenFrame/WebApp/Segment/Decline/SessionInStore.pm
+lib/OpenFrame/WebApp/Segment/Decline/StaticContent.pm
 lib/OpenFrame/WebApp/Segment/Decline/TemplateInStore.pm
 lib/OpenFrame/WebApp/Segment/Decline/UserInSession.pm
 lib/OpenFrame/WebApp/Segment/Decline/UserInStore.pm
@@ -34,6 +36,8 @@ lib/OpenFrame/WebApp/Segment/User/EnvLoader.pm
 lib/OpenFrame/WebApp/Segment/User/Loader.pm
 lib/OpenFrame/WebApp/Segment/User/RequestLoader.pm
 lib/OpenFrame/WebApp/Segment/User/SaveInSession.pm
+lib/OpenFrame/WebApp/Segment/User/Session.pm
+lib/OpenFrame/WebApp/Segment/User/SessionLoader.pm
 lib/OpenFrame/WebApp/Session.pm
 lib/OpenFrame/WebApp/Session/CacheBase.pm
 lib/OpenFrame/WebApp/Session/Factory.pm
@@ -47,6 +51,7 @@ lib/OpenFrame/WebApp/Template/TT2.pm
 lib/OpenFrame/WebApp/User.pm
 lib/OpenFrame/WebApp/User/Factory.pm
 t/02..errors.t
+t/05..factory.t
 t/09..template.t
 t/10..template_factory.t
 t/11..template_tt2.t
@@ -63,9 +68,12 @@ t/29..session_segment.t
 t/30..user.t
 t/34..remote_user_loader.t
 t/35..request_user_loader.t
+t/36..session_user_loader.t
 t/39..user_segment.t
 t/50..decliners.t
 t/51..savers.t
+t/lib/Test/Session.pm
+t/lib/Test/Template.pm
 t/templates/error.petal
 t/templates/error.tt2
 t/templates/test.petal

@@ -13,6 +13,8 @@ use Test::More qw( no_plan => 1 );
 BEGIN { use_ok("OpenFrame::WebApp::User") };
 BEGIN { use_ok("OpenFrame::WebApp::User::Factory") };
 
+ok( keys( %{ OpenFrame::WebApp::User->types } ), 'default types' );
+
 ok( OpenFrame::WebApp::User->types->{webapp}, 'webapp registered' );
 
 my $user = new OpenFrame::WebApp::User;

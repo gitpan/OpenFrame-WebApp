@@ -15,6 +15,10 @@ package OpenFrame::WebApp;
 use strict;
 use warnings::register;
 
+use base qw ( OpenFrame::Object );
+
+our $VERSION = 0.03;
+
 # load basic objects
 use OpenFrame::WebApp::User;
 use OpenFrame::WebApp::User::Factory;
@@ -43,10 +47,6 @@ use OpenFrame::WebApp::Segment::Decline::UserInSession;
 use OpenFrame::WebApp::Segment::Decline::SessionInStore;
 
 use OpenFrame::WebApp::Segment::Decline::TemplateInStore;
-
-our $VERSION = 0.02;
-
-use base qw ( OpenFrame::Object );
 
 
 1;
@@ -79,7 +79,6 @@ has abstract Session and Session::Loader classes to cover this.  Here's an
 example of how you might use session files & cookies in your app:
 
   use Pipeline;
-  use OpenFrame::WebApp::Session::FileCache;
   use OpenFrame::WebApp::Session::Factory;
   use OpenFrame::WebApp::Segment::Session::CookieLoader;
 
@@ -103,7 +102,6 @@ be extended to support them all, though out-of-the box it only supports a few.
 Here's an example of how your application might use TT2 templates:
 
   use Pipeline;
-  use OpenFrame::WebApp::Template::TT2;
   use OpenFrame::WebApp::Template::Factory;
   use OpenFrame::WebApp::Segment::Session::CookieLoader;
 
@@ -141,7 +139,7 @@ Users from the REMOTE_USER environment variable (set by Apache):
 =head2 Errors
 
 WebApp combines the C<Error> module's exception model and the idea of I<error
-flags> in C<OpenFrame::WebApp::Error>.  You can either keep using this model,
+flags> in L<OpenFrame::WebApp::Error>.  You can either keep using this model,
 or replace it with something else if you like.
 
 =head2 Localization
@@ -150,7 +148,7 @@ No localization hooks in place yet.
 
 =head2 Configuration
 
-No configuration hooks in place yet.
+No configuration hooks in place yet (but see L<Pipeline::Config>).
 
 =head1 AUTHOR
 

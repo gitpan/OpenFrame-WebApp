@@ -1,12 +1,12 @@
 =head1 NAME
 
-OpenFrame::WebApp::Template - a TT2 template processing wrapper
+OpenFrame::WebApp::Template::TT2 - a TT2 template processing wrapper
 
 =head1 SYNOPSIS
 
-  use OpenFrame::WebApp::Template;
+  use OpenFrame::WebApp::Template::TT2;
 
-  my $tmpl = new OpenFrame::WebApp::Template;
+  my $tmpl = new OpenFrame::WebApp::Template::TT2;
   $tmpl->file( $local_file_path )
        ->template_vars( { fred => fish } );
 
@@ -23,11 +23,9 @@ use Error qw( :try );
 use Template;
 use OpenFrame::WebApp::Template::Error;
 
-our $VERSION = (split(/ /, '$Revision: 1.9 $'))[1];
-
 use base qw( OpenFrame::WebApp::Template );
 
-OpenFrame::WebApp::Template->types->{tt2} = __PACKAGE__;
+our $VERSION = (split(/ /, '$Revision: 1.10 $'))[1];
 
 our $TT2 = new Template;
 
@@ -74,7 +72,7 @@ __END__
 =head1 DESCRIPTION
 
 The C<OpenFrame::WebApp::Template::TT2> class is wrapper around the
-Template::Toolkit.  It inherits its functionality from
+C<Template::Toolkit>.  It inherits its functionality from
 L<OpenFrame::WebApp::Template>
 
 =head1 TEMPLATE TYPE

@@ -9,7 +9,7 @@ OpenFrame::WebApp::Segment::User::SaveInSession - save user to session.
 
   my $pipe = new Pipeline;
 
-  $OpenFrame::WebApp::Segment::User::SaveInSession::USER_KEY = 'user';
+  $OpenFrame::WebApp::Segment::User::Session::USER_KEY = 'my_user';
 
   my $usaver = new OpenFrame::WebApp::Segment::User::SaveInSession;
   $pipe->add_segment( $uloader, ... $usaver, ... );
@@ -23,19 +23,15 @@ package OpenFrame::WebApp::Segment::User::SaveInSession;
 use strict;
 use warnings::register;
 
-our $VERSION = (split(/ /, '$Revision: 1.1 $'))[1];
-
 use base qw( OpenFrame::WebApp::Segment::User
-	     OpenFrame::WebApp::Segment::Session );
+	     OpenFrame::WebApp::Segment::User::Session );
 
-our $USER_KEY = 'user';
+our $VERSION = (split(/ /, '$Revision: 1.2 $'))[1];
 
 sub dispatch {
-    my $self    = shift;
-    my $user    = $self->get_user_from_store || return;
-    my $session = $self->get_session_from_store || return;
-    $session->set( $USER_KEY, $user );
-    return 1;
+    my $self = shift;
+    my $user = $self->get_user_from_store || return;
+    return $self->save_user_in_session( $user );
 }
 
 1;
@@ -59,6 +55,6 @@ Released under the same license as Perl itself.
 
 L<OpenFrame::WebApp::User>,
 L<OpenFrame::WebApp::Segment::User>,
-L<OpenFrame::WebApp::Segment::Session>
+L<OpenFrame::WebApp::Segment::User::Session>
 
 =cut

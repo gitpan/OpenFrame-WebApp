@@ -1,6 +1,6 @@
 =head1 NAME
 
-OpenFrame::WebApp::Template - a Petal template processing wrapper
+OpenFrame::WebApp::Template::Petal - a Petal template processing wrapper
 
 =head1 SYNOPSIS
 
@@ -29,11 +29,9 @@ use Petal;
 use Error qw( :try );
 use OpenFrame::WebApp::Template::Error;
 
-our $VERSION = (split(/ /, '$Revision: 1.6 $'))[1];
-
 use base qw( OpenFrame::WebApp::Template );
 
-OpenFrame::WebApp::Template->types->{petal} = __PACKAGE__;
+our $VERSION = (split(/ /, '$Revision: 1.7 $'))[1];
 
 
 ## use new petal instance as default

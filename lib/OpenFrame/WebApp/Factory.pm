@@ -20,10 +20,11 @@ use warnings::register;
 
 use Error;
 use OpenFrame::WebApp::Error::Abstract;
-
-our $VERSION = (split(/ /, '$Revision: 1.3 $'))[1];
+use OpenFrame::WebApp::Error::LoadClass;
 
 use base qw ( OpenFrame::Object );
+
+our $VERSION = (split(/ /, '$Revision: 1.4 $'))[1];
 
 sub type {
     my $self = shift;
@@ -44,7 +45,17 @@ sub get_types_class {
 
 sub new_object {
     my $self = shift;
-    return $self->get_types_class->new( @_ );
+    return $self->load_types_class->new( @_ );
+}
+
+sub load_types_class {
+    my $self  = shift;
+    my $class = $self->get_types_class;
+    unless ( $class->can( 'new' ) ) {
+	eval "use $class;";
+	throw OpenFrame::WebApp::Error::LoadClass( -text => $@ ) if ($@);
+    }
+    return $class;
 }
 
 1;
@@ -71,10 +82,16 @@ a class name.  how C<type> is interpreted depends on the implementation.
 
 I<abstract> method to get the class associated with type().
 
+=item $class = $obj->load_types_class()
+
+load the class associated with type() if it has no C<new()> method.  throws
+L<OpenFrame::WebApp::Error::LoadClass> if there was a problem loading the
+class.
+
 =item $new_obj = $obj->new_object( ... )
 
 creates a new object of the apprpriate class.  passes all arguments on to the
-new() method in this class.
+new() method in this class.  tries to load the types class first.
 
 =back
 

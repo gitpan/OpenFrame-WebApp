@@ -30,11 +30,14 @@ use OpenFrame::Response;
 use OpenFrame::WebApp::Error::Abstract;
 use OpenFrame::WebApp::Template::Error;
 
-our $VERSION = (split(/ /, '$Revision: 1.11 $'))[1];
-
 use base qw ( OpenFrame::Object );
 
-our $TYPES = {};
+our $VERSION = (split(/ /, '$Revision: 1.13 $'))[1];
+
+our $TYPES = {
+	      tt2   => 'OpenFrame::WebApp::Template::TT2',
+	      petal => 'OpenFrame::WebApp::Template::Petal',
+	     };
 
 ## get hash of known template types
 sub types {

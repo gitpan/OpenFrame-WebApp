@@ -4,19 +4,25 @@
 
 1. Write more Segments
 
-Loaders of all sorts:
+Loaders of all sorts.  Including:
 	Session::UrlLoader
 	Session::QueryLoader
 
-	User::SessionLoader ?
+More Decliners.
 
 
-2. Configuration
+3. Tests library
 
-Use Pipeline::Config?
+Move repeated test code into t/lib.
 
 
-3. Figure out how to do Localization
+4. Configuration
+
+Use Pipeline::Config for example app?  And other examples?  This would
+make the purpose & usage of each segment more clear.
+
+
+5. Localization hooks?
 
 Shoud we stick something in the pipe to do localization for everything?  Or
 should each class know how to localize whatever it needs to?
@@ -24,15 +30,7 @@ should each class know how to localize whatever it needs to?
 (moved down in priority: maybe all localization can be done in templates?)
 
 
-4. Tests library
-
-Starting to repeat a lot of code in tests.  Should start using t/lib
-
-
-5. Registered sub-classes
-
-Stick all known sub-classes in the class itself... this way the factory classes
-can do an eval to load them if there's no constructor available.
+x. Misc
 
 
 +--

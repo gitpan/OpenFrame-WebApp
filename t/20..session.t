@@ -4,6 +4,7 @@
 ## Tests for OpenFrame::WebApp::Session
 ##
 
+use lib 't/lib';
 use blib;
 use strict;
 use warnings;
@@ -11,8 +12,11 @@ use warnings;
 use Test::More qw( no_plan => 1 );
 
 BEGIN { use_ok("OpenFrame::WebApp::Session") };
+BEGIN { use_ok("Test::Session") };
 
-is( OpenFrame::WebApp::Session->types->{test}, 'Test::Session', 'types' );
+ok( keys( %{ OpenFrame::WebApp::Session->types } ), 'default types' );
+
+ok( OpenFrame::WebApp::Session->types->{test}, 'test type registered' );
 
 my $sess = new Test::Session;
 ok( $sess, "new" ) || die( "can't create new object!" );
@@ -27,7 +31,3 @@ is( $sess->set( 1,2 ), $sess, "set" );
 is( $sess->get( 1 ), 2,       "get" );
 
 
-package Test::Session;
-use base qw( OpenFrame::WebApp::Session );
-# need a BEGIN or this gets executed last:
-BEGIN { OpenFrame::WebApp::Session->types->{test} = __PACKAGE__; }

@@ -15,7 +15,7 @@ package OpenFrame::WebApp::User;
 use strict;
 use warnings::register;
 
-our $VERSION = (split(/ /, '$Revision: 1.4 $'))[1];
+our $VERSION = (split(/ /, '$Revision: 1.5 $'))[1];
 
 use base qw( OpenFrame::Object );
 
@@ -49,7 +49,7 @@ The C<OpenFrame::WebApp::User> class implements a I<very> basic user with an
 identifier, and nothing more.  This class exists to be sub-classed to suit
 your application's needs.
 
-This class was meant to be used with C<OpenFrame::WebApp::UserFactory>.
+This class was meant to be used with L<OpenFrame::WebApp::User::Factory>.
 
 =head1 METHODS
 
@@ -84,7 +84,7 @@ Released under the same license as Perl itself.
 
 =head1 SEE ALSO
 
-L<OpenFrame::WebApp::UserFactory>,
+L<OpenFrame::WebApp::User::Factory>,
 L<OpenFrame::WebApp::Segment::User::Loader>
 
 =cut

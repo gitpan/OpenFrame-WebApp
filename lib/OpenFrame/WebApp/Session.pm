@@ -27,11 +27,14 @@ use Digest::MD5 qw( md5_hex );
 use Time::ParseDate;
 use OpenFrame::WebApp::Error::Abstract;
 
-our $VERSION = (split(/ /, '$Revision: 1.6 $'))[1];
+our $VERSION = (split(/ /, '$Revision: 1.7 $'))[1];
 
 use base qw( OpenFrame::Object );
 
-our $TYPES = {};
+our $TYPES = {
+	      file_cache => 'OpenFrame::WebApp::Session::FileCache',
+	      mem_cache  => 'OpenFrame::WebApp::Session::MemCache',
+	     };
 
 sub types {
     my $self = shift;

@@ -4,6 +4,7 @@
 ## Tests for OpenFrame::WebApp::Template
 ##
 
+use lib 't/lib';
 use blib;
 use strict;
 use warnings;
@@ -13,8 +14,11 @@ use Test::More qw( no_plan => 1 );
 use Error qw( :try );
 BEGIN { use_ok("OpenFrame::WebApp::Template") };
 BEGIN { use_ok("OpenFrame::WebApp::Template::Error"); }
+BEGIN { use_ok('Test::Template'); }
 
-is( OpenFrame::WebApp::Template->types->{test}, 'Test::Template', 'types' );
+ok( keys( %{ OpenFrame::WebApp::Template->types } ), 'default types' );
+
+ok( OpenFrame::WebApp::Template->types->{test}, 'test type registered' );
 
 my $tmpl = new Test::Template;
 ok( $tmpl, "new" ) || die( "can't create new object!" );
@@ -51,11 +55,3 @@ if (isa_ok( $e, 'OpenFrame::WebApp::Template::Error', 'error' )) {
     ok( $e->template,                'error->template file' );
 }
 
-
-
-package Test::Template;
-use base qw( OpenFrame::WebApp::Template );
-# need a BEGIN or this gets executed last:
-BEGIN { OpenFrame::WebApp::Template->types->{test} = __PACKAGE__; }
-sub default_processor { return {}; }
-sub process_template  { return "processed"; }

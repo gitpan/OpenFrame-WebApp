@@ -17,13 +17,11 @@ use warnings::register;
 
 use Cache::MemoryCache;
 
-our $VERSION = (split(/ /, '$Revision: 1.1 $'))[1];
-
 use base qw( OpenFrame::WebApp::Session::CacheBase );
 
 use constant cache_class => "Cache::MemoryCache";
 
-OpenFrame::WebApp::Session->types->{mem_cache} = __PACKAGE__;
+our $VERSION = (split(/ /, '$Revision: 1.2 $'))[1];
 
 1;
 
@@ -31,7 +29,7 @@ OpenFrame::WebApp::Session->types->{mem_cache} = __PACKAGE__;
 
 An C<OpenFrame::WebApp::Session> using C<Cache::MemoryCache>.
 
-Inherits its interface from C<OpenFrame::WebApp::Session::CacheBase>.
+Inherits its interface from L<OpenFrame::WebApp::Session::CacheBase>.
 
 =head1 AUTHOR
 

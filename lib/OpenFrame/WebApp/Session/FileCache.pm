@@ -17,13 +17,11 @@ use warnings::register;
 
 use Cache::FileCache;
 
-our $VERSION = (split(/ /, '$Revision: 1.3 $'))[1];
-
 use base qw( OpenFrame::WebApp::Session::CacheBase );
 
 use constant cache_class => "Cache::FileCache";
 
-OpenFrame::WebApp::Session->types->{file_cache} = __PACKAGE__;
+our $VERSION = (split(/ /, '$Revision: 1.4 $'))[1];
 
 1;
 
@@ -31,7 +29,7 @@ OpenFrame::WebApp::Session->types->{file_cache} = __PACKAGE__;
 
 An C<OpenFrame::WebApp::Session> using C<Cache::FileCache>.
 
-Inherits its interface from C<OpenFrame::WebApp::Session::CacheBase>.
+Inherits its interface from L<OpenFrame::WebApp::Session::CacheBase>.
 
 =head1 AUTHOR
 
@@ -44,7 +42,9 @@ Released under the same license as Perl itself.
 
 =head1 SEE ALSO
 
+L<Cache::FileCache>,
 L<OpenFrame::WebApp::Sesssion>,
-L<Cache::FileCache>
+L<OpenFrame::WebApp::Sesssion::CacheBase>,
+L<OpenFrame::WebApp::Sesssion::MemCache>
 
 =cut

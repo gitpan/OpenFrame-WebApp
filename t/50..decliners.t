@@ -4,12 +4,14 @@
 ## Tests for OpenFrame::WebApp::Segment::Decline::*
 ##
 
+use lib 't/lib';
 use blib;
 use strict;
 use warnings;
 
 use Test::More no_plan => 1;
-
+use Test::Template;
+use OpenFrame::Request;
 use Pipeline::Segment::Tester;
 
 BEGIN { use_ok("OpenFrame::WebApp::Segment::Decline"); }
@@ -68,6 +70,21 @@ if (use_ok("OpenFrame::WebApp::Segment::Decline::TemplateInStore")) {
 }
 
 
+## test static content decliner
+eval "use MIME::Types;";
+SKIP: {
+    skip( 'MIME::Types not installed', 3 ) if ($@);
+    if (use_ok("OpenFrame::WebApp::Segment::Decline::StaticContent")) {
+	my $pt   = new Pipeline::Segment::Tester;
+	my $seg  = new OpenFrame::WebApp::Segment::Decline::StaticContent;
+	my $request = OpenFrame::Request->new->uri('http://foo.com/test.gif');
+	like  ( $pt->test( $seg, $request ),  qr/declined/, "static content" );
+	$request->uri('http://foo.com/test.html');
+	unlike( $pt->test( $seg, $request ), qr/declined/, "not static content" );
+    }
+}
+
+
 package Test::Segment::Decline;
 use base qw( OpenFrame::WebApp::Segment::Decline );
 use constant message => 'decline test';
@@ -76,11 +93,4 @@ sub should_decline { return 1; }
 package Test::Segment::DontDecline;
 use base qw( OpenFrame::WebApp::Segment::Decline );
 sub should_decline { return; }
-
-package Test::Template;
-use base qw( OpenFrame::WebApp::Template );
-# need a BEGIN or this gets executed last:
-BEGIN { OpenFrame::WebApp::Template->types->{test} = __PACKAGE__; }
-sub default_processor { return {}; }
-sub process_template  { return "processed"; }
 
