@@ -1,0 +1,39 @@
+=======================
+ OpenFrame-WebApp Todo
+=======================
+
+1. Write more Segments
+
+Loaders of all sorts:
+	Session::UrlLoader
+	Session::QueryLoader
+
+	User::SessionLoader ?
+
+
+2. Configuration
+
+Use Pipeline::Config?
+
+
+3. Figure out how to do Localization
+
+Shoud we stick something in the pipe to do localization for everything?  Or
+should each class know how to localize whatever it needs to?
+
+(moved down in priority: maybe all localization can be done in templates?)
+
+
+4. Tests library
+
+Starting to repeat a lot of code in tests.  Should start using t/lib
+
+
+5. Registered sub-classes
+
+Stick all known sub-classes in the class itself... this way the factory classes
+can do an eval to load them if there's no constructor available.
+
+
++--
+ Steve Purkis <spurkis@epn.nu>
